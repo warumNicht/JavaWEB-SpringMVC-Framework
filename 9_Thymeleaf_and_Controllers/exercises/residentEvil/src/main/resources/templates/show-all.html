@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/head}"></head>
+<body>
+
+<div class="container-fluid">
+    <header th:insert="~{fragments/navbar}"></header>
+
+    <main>
+        <div class="container">
+            <h1 class="mt-4 mb-4">All viruses</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Magnitude</th>
+                    <th scope="col">Released On</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody >
+                <tr th:each="virus, iter : ${allViruses}">
+                    <th scope="row" th:text="${iter.index+1}"></th>
+                    <td th:text="${virus.name}"></td>
+                    <td th:text="${virus.magnitude}"></td>
+                    <td th:text="${virus.releasedOn}"></td>
+                    <td>
+                        <a th:href="@{/viruses/edit/{id}(id=${virus.id})}"  class="btn btn-outline-info">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/viruses/delete/{id}(id=${virus.id})}"  class="btn btn-outline-info">Delete</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</div>
+</body>
+</html>
